@@ -48,6 +48,7 @@
 #ifndef LPS_H
 #define LPS_H
 
+#include <sys/types.h>
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -61,7 +62,7 @@ extern "C" {
 
 struct lps {
     int level;
-    int size;
+    uint64_t size;
     struct core *cores;
 };
 
@@ -84,7 +85,7 @@ void reverse(const char *str, int len, char **rev);
  * @param str The input string to be parsed.
  * @param len The length of the string to be parsed.
  */
-void init_lps(struct lps *lps_ptr, const char *str, int len);
+void init_lps(struct lps *lps_ptr, const char *str, uint64_t len);
 
 /**
  * @brief Constructs an lps object from a string.
@@ -170,7 +171,7 @@ void write_lps(struct lps *lps_ptr, FILE *out);
  * @param offset The distance measure where the indecies of the core will be shifted by.
  * @return Size of the cores identified in the given string.
  */
-int parse1(const char *begin, const char *end, struct core *cores, uint64_t offset);
+uint64_t parse1(const char *begin, const char *end, struct core *cores, uint64_t offset);
 
 /**
  * @brief Parses a sequence to extract Locally Consisted Parsing (LCP) cores and stores them in a 

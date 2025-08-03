@@ -1,4 +1,6 @@
 #include "lps.h"
+#include <stdint.h>
+#include <math.h>
 
 void reverse(const char *str, int len, char **rev) {
     *rev = (char*) malloc(len*sizeof(char));
@@ -17,7 +19,7 @@ void reverse(const char *str, int len, char **rev) {
     }
 }
 
-void init_lps(struct lps *lps_ptr, const char *str, int len) {   
+void init_lps(struct lps *lps_ptr, const char *str, uint64_t len) {   
     lps_ptr->level = 1;
     lps_ptr->size = 0;
     lps_ptr->cores = (struct core *)malloc((len/CONSTANT_FACTOR)*sizeof(struct core));
@@ -156,11 +158,11 @@ void write_lps(struct lps *lps_ptr, FILE *out) {
     }
 }
 
-int parse1(const char *begin, const char *end, struct core *cores, uint64_t offset) {
+uint64_t parse1(const char *begin, const char *end, struct core *cores, uint64_t offset) {
 
     const char *it1 = begin;
     const char *it2 = end;
-    int core_index = 0;
+    uint64_t core_index = 0;
     int last_invalid_char_index = -1;
 
     // find lcp cores
