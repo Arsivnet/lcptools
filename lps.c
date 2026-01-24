@@ -1,20 +1,20 @@
 #include "lps.h"
 
-void init_lps(struct lps *lps_ptr, const char *str, int len) {   
+void init_lps(struct lps *lps_ptr, const char *str, uint64_t len) {   
     lps_ptr->level = 1;
     lps_ptr->size = 0;
     lps_ptr->cores = (struct core *)malloc((len/CONSTANT_FACTOR)*sizeof(struct core));
     lps_ptr->size = parse1(str, str+len, lps_ptr->cores, 0);
 }
 
-void init_lps_offset(struct lps *lps_ptr, const char *str, int len, uint64_t offset) {   
+void init_lps_offset(struct lps *lps_ptr, const char *str, uint64_t len, uint64_t offset) {   
     lps_ptr->level = 1;
     lps_ptr->size = 0;
     lps_ptr->cores = (struct core *)malloc((len/CONSTANT_FACTOR)*sizeof(struct core));
     lps_ptr->size = parse1(str, str+len, lps_ptr->cores, offset);
 }
 
-void init_lps2(struct lps *lps_ptr, const char *str, int len) {   
+void init_lps2(struct lps *lps_ptr, const char *str, uint64_t len) {   
     lps_ptr->level = 1;
     lps_ptr->size = 0;
     lps_ptr->cores = (struct core *)malloc((len/CONSTANT_FACTOR)*sizeof(struct core));
@@ -46,7 +46,7 @@ void init_lps3(struct lps *lps_ptr, FILE *in) {
     }
 }
 
-void init_lps4(struct lps *lps_ptr, const char *str, int len, int lcp_level, int chunk_size) {
+void init_lps4(struct lps *lps_ptr, const char *str, uint64_t len, int lcp_level, int chunk_size) {
 
     if (lcp_level < 1)
         return;
