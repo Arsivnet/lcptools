@@ -67,18 +67,6 @@ struct lps {
 };
 
 /**
- * @brief Reverses a string and stores the result in a dynamically allocated buffer.
- *
- * @param str The input string to reverse (must be valid for the given length).
- * @param len The length of the input string (excluding null terminator, if any).
- * @param rev Pointer to a char pointer where the reversed string will be stored.
- *            Memory is dynamically allocated and must be freed by the caller.
- *
- * @note The reversed string does not include a null terminator.
- */
-void reverse(const char *str, int len, char **rev);
-
-/**
  * @brief Constructs an lps object from a string.
  * 
  * @param lps_ptr The `lps` object that will be initialized
@@ -95,7 +83,7 @@ void init_lps(struct lps *lps_ptr, const char *str, uint64_t len);
  * @param len The length of the string to be parsed.
  * @param offset The length of the offset in which each index will be shifted.
  */
-void init_lps_offset(struct lps *lps_ptr, const char *str, int len, uint64_t offset);
+void init_lps_offset(struct lps *lps_ptr, const char *str, uint64_t len, uint64_t offset);
 
 /**
  * @brief Constructs an lps object from a string, with reverse complement
@@ -105,7 +93,7 @@ void init_lps_offset(struct lps *lps_ptr, const char *str, int len, uint64_t off
  * @param str The input string to be parsed.
  * @param len The length of the string to be parsed.
  */
-void init_lps2(struct lps *lps_ptr, const char *str, int len);
+void init_lps2(struct lps *lps_ptr, const char *str, uint64_t len);
 /**
  * @brief Initializes an lps object by reading its contents from a binary file.
  *
@@ -133,7 +121,7 @@ void init_lps3(struct lps *lps_ptr, FILE *in);
  * @param len The length of the string to be parsed.
  * @param chunk_size The length of the chunks to be processed.
  */
-void init_lps4(struct lps *lps_ptr, const char *str, int len, int lcp_level, int chunk_size);
+void init_lps4(struct lps *lps_ptr, const char *str, uint64_t len, int lcp_level, int chunk_size);
 
 /**
  * @brief Destructor for the lps object. Frees dynamically allocated memory for cores.
