@@ -131,13 +131,6 @@ void init_core3(struct core *cr, struct core *begin, uint64_t distance) {
 
     cr->bit_rep = 0x7FFFFFFFFFFFFFFF & cr->bit_rep;
     cr->bit_size = minimum(cr->bit_size, 63);
-
-    ulabel data[4];
-    data[0] = (begin)->label;
-    data[1] = (begin+distance-2)->label;
-    data[2] = (begin+distance-1)->label;
-    data[3] = distance-2;
-    cr->label = MurmurHash3_32((void*)data, 4 * sizeof(ulabel), 42);
 }
 
 void init_core4(struct core *cr, ubit_size bit_size, uint64_t bit_rep, ulabel label, uint64_t start, uint64_t end) {
@@ -156,7 +149,7 @@ void print_core(const struct core *cr) {
         printf("%ld", ((cr->bit_rep >> 4) & 1));
         for (uint64_t i=0; i<middle_count; i++) {
             printf("%ld", ((middle_val >> 1) & 1));
-            printf("%ld", (middle_val & 1));           
+            printf("%ld", (middle_val & 1));
         }
         printf("%ld", ((cr->bit_rep >> 1) & 1));
         printf("%ld", (cr->bit_rep & 1));
